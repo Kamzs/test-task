@@ -1,4 +1,4 @@
-package com.ambro;
+package com.ambro.main;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -17,7 +17,7 @@ public class ModelObject {
         this.phone = phone;
     }
 
-    public long getAge (){
+    public long getAge() {
         LocalDate now = LocalDate.now();
         LocalDate time = this.date;
         long age = time.until(now, ChronoUnit.DAYS);

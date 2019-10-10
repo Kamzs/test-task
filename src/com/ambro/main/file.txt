@@ -2,4 +2,3 @@ Andrzej,Lewandowski,1991-09-16,123456789
 Karol,Lewandowski,1981-09-16,555556789
 Artur,Nowak,1991-09-16
 Gabriela,Nowak,1998-09-16,456734823
-

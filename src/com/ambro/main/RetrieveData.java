@@ -1,4 +1,4 @@
-package com.ambro;
+package com.ambro.main;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,9 +18,8 @@ public class RetrieveData {
         List<ModelObject> listOfUsers = new ArrayList<>();
         BufferedReader bufferedReader = null;
 
-
         try {
-            bufferedReader = new BufferedReader(new FileReader("src\\com\\ambro\\file.txt"));
+            bufferedReader = new BufferedReader(new FileReader("src\\com\\ambro\\main\\file.txt"));
             String strCurrentLine;
             while ((strCurrentLine = bufferedReader.readLine()) != null) {
 
@@ -35,7 +34,7 @@ public class RetrieveData {
 
                 retrieveNameFromString = words[0];
                 retrieveSurnameFromString = words[1];
-                retrieveDateFromString = getAge(words[2]);
+                retrieveDateFromString = getBithDate(words[2]);
 
                 if (count == 3) {
                     retrievePhoneFromString = Integer.parseInt(words[3]);
@@ -51,28 +50,41 @@ public class RetrieveData {
                 IOException e) {
             System.out.println("catch");
             e.printStackTrace();
-            return null;
         } finally {
             try {
                 if (bufferedReader != null)
                     bufferedReader.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
-
             }
-            return listOfUsers;
-
         }
+        return listOfUsers;
     }
 
-    private static LocalDate getAge(String date) {
+    public ModelObject getOldestUserWithPhone(List<ModelObject> listOfUsers) {
+        ModelObject oldestUserWithPhone = null;
+
+        for (int i = 0; i < listOfUsers.size(); i++) {
+            if (!(listOfUsers.get(i).getPhone() == null)) {
+                oldestUserWithPhone = listOfUsers.get(i);
+            }
+        }
+        if (oldestUserWithPhone == null) {
+            System.out.println("no user with phone number");
+        } else for (ModelObject user : listOfUsers) {
+            if (!(user.getPhone() == null) && user.getAge() > oldestUserWithPhone.getAge())
+                oldestUserWithPhone = user;
+        }
+        return oldestUserWithPhone;
+    }
+
+    public static LocalDate getBithDate (String date) {
 
         String[] dateTable = date.split("-");
         int year = Integer.parseInt(dateTable[0]);
         int month = Integer.parseInt(dateTable[1]);
         int day = Integer.parseInt(dateTable[2]);
-        LocalDate time = LocalDate.of(year,month,day);
-        return time;
+        return LocalDate.of(year, month, day);
 
     }
 }
