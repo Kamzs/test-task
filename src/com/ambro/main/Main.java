@@ -19,8 +19,8 @@ public class Main {
                 "the oldest user having phone is: " + "\n" +
                         "name: " + oldestUserWithPhone.getName() + "\n" +
                         "surname: " + oldestUserWithPhone.getSurname() + "\n" +
-                        "phone no.: " + oldestUserWithPhone.getPhone() + "\n" +
-                        "born: " + oldestUserWithPhone.getDate());
+                        "age in days: " + oldestUserWithPhone.getAge() + "\n" +
+                        "phone no.: " + oldestUserWithPhone.getPhone());
 
     }
 }
